@@ -63,7 +63,7 @@ const PostPage = () => {
   function togglePostLike() {
     dispatch(togglePostLikeDislike(postID))
       .then((res) => {
-        console.log("like:", res);
+        // console.log("like:", res);
 
         if (res.payload?.success) {
           toast({

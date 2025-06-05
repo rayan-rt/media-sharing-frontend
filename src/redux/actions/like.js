@@ -131,64 +131,6 @@ const getLikedComments = createAsyncThunk(
   }
 );
 
-/*
-
-const checkVideoLiked = createAsyncThunk(
-  "checkVideoLiked",
-  async (videoID, { rejectWithValue }) => {
-    try {
-      let { data } = await axios.get(`/api/v1/like/isvideoliked/${videoID}`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // console.log("data:", data);
-
-      return data;
-    } catch (error) {
-      console.log("error:", error);
-      return error.response.data.errors
-        ? rejectWithValue(error.response.data.errors)
-        : rejectWithValue(error.response.statusText);
-    }
-  }
-);
-
-const checkPostLiked = createAsyncThunk(
-  "checkPostLiked",
-  async (postID, { rejectWithValue }) => {
-    try {
-      let { data } = await axios.get(`/api/v1/like/ispostliked/${postID}`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // console.log("data:", data);
-
-      return data;
-    } catch (error) {
-      console.log("error:", error);
-      return error.response.data.errors
-        ? rejectWithValue(error.response.data.errors)
-        : rejectWithValue(error.response.statusText);
-    }
-  }
-);
-
-const checkCommentLiked = createAsyncThunk("", async function (_, {rejectWithValue}) {
-  try {
-    // 
-  } catch (error) {
-    // 
-  }
-})
-
-*/
-
 export {
   toggleVideoLikeDislike,
   togglePostLikeDislike,
@@ -196,7 +138,4 @@ export {
   getLikedVideos,
   getLikedPosts,
   getLikedComments,
-  // checkVideoLiked,
-  // checkPostLiked,
-  // checkCommentLiked,
 };

@@ -45,15 +45,15 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, [dispatch]);
+  }, []);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <Router>
       {isAuthenticated && <Navbar />}
       <Routes>
-        <Route path="*" element={<div>Page Not Found!</div>} />
+        <Route path="*" element={<Error errorMessage={"Page Not Found"} />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={isAuthenticated ? <Home /> : <Signin />} />
