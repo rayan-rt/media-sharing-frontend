@@ -4,14 +4,12 @@ import { handleRequestError, SERVER_API_BASE_URL } from "../../constants";
 
 // --- //
 
-console.log(SERVER_API_BASE_URL);
-
 let postSignup = createAsyncThunk(
   "postSignup",
   async (formData, { rejectWithValue }) => {
     try {
       let { data } = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/v1/user/signup`,
+        `${SERVER_API_BASE_URL}/api/v1/user/signup`,
         formData,
         {
           withCredentials: true,
@@ -30,7 +28,7 @@ let postSignin = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       let { data } = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/v1/user/signin`,
+        `${SERVER_API_BASE_URL}/api/v1/user/signin`,
         userData,
         {
           withCredentials: true,
