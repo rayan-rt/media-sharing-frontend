@@ -9,7 +9,7 @@ const Home = () => {
   const { isLoading: videoLoading, videos } = useSelector(
     (state) => state.video
   );
-  console.log("videoData:", videos);
+  // console.log("videoData:", videos);
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
