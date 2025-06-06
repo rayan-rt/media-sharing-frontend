@@ -45,7 +45,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) return <Loader />;
 
