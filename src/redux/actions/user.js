@@ -30,7 +30,7 @@ let postSignin = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       let { data } = await axios.post(
-        `${SERVER_API_BASE_URL}/api/v1/user/signin`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/v1/user/signin`,
         userData,
         {
           withCredentials: true,
