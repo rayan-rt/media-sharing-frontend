@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { handleRequestError } from "../../constants";
+import { handleRequestError, SERVER_API_BASE_URL } from "../../constants";
 
 // --- //
 
@@ -8,12 +8,16 @@ let postCreatePost = createAsyncThunk(
   "postCreatePost",
   async (postContent, { rejectWithValue }) => {
     try {
-      let { data } = await axios.post("/api/v1/post", postContent, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.post(
+        `${SERVER_API_BASE_URL}/api/v1/post`,
+        postContent,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -27,9 +31,9 @@ let postCreatePost = createAsyncThunk(
 let getAllPosts = createAsyncThunk(
   "getAllPosts",
   async (params, { rejectWithValue }) => {
-    let url = `/api/v1/post?userID=${params?.userID || ""}&page=${
-      params?.page || 1
-    }&limit=${params?.limit || 5}`;
+    let url = `${SERVER_API_BASE_URL}/api/v1/post?userID=${
+      params?.userID || ""
+    }&page=${params?.page || 1}&limit=${params?.limit || 5}`;
 
     try {
       let { data } = await axios.get(url, {
@@ -52,12 +56,15 @@ let getSinglePost = createAsyncThunk(
   "getSinglePost",
   async (postID, { rejectWithValue }) => {
     try {
-      let { data } = await axios.get(`/api/v1/post/${postID}`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.get(
+        `${SERVER_API_BASE_URL}/api/v1/post/${postID}`,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -73,7 +80,7 @@ let patchUpdatePost = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       let { data } = await axios.patch(
-        `/api/v1/post/${params?.postID}`,
+        `${SERVER_API_BASE_URL}/api/v1/post/${params?.postID}`,
         { content: params?.content },
         {
           withCredentials: true,
@@ -96,12 +103,15 @@ let deletePost = createAsyncThunk(
   "deletePost",
   async (postID, { rejectWithValue }) => {
     try {
-      let { data } = await axios.delete(`/api/v1/post/${postID}`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.delete(
+        `${SERVER_API_BASE_URL}/api/v1/post/${postID}`,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {

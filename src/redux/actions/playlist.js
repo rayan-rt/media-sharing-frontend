@@ -1,17 +1,21 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { handleRequestError } from "../../constants";
+import { handleRequestError, SERVER_API_BASE_URL } from "../../constants";
 
 const postCreatePlaylist = createAsyncThunk(
   "postCreatePlaylist",
   async (playlistData, { rejectWithValue }) => {
     try {
-      let { data } = await axios.post(`/api/v1/playlist`, playlistData, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.post(
+        `${SERVER_API_BASE_URL}/api/v1/playlist`,
+        playlistData,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -26,12 +30,15 @@ const getUserPlaylists = createAsyncThunk(
   "getUserPlaylists",
   async (_, { rejectWithValue }) => {
     try {
-      let { data } = await axios.get(`/api/v1/playlist/`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.get(
+        `${SERVER_API_BASE_URL}/api/v1/playlist/`,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -46,12 +53,15 @@ const getPlaylistByID = createAsyncThunk(
   "getPlaylistByID",
   async (playlistID, { rejectWithValue }) => {
     try {
-      let { data } = await axios.get(`/api/v1/playlist/${playlistID}`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.get(
+        `${SERVER_API_BASE_URL}/api/v1/playlist/${playlistID}`,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -67,7 +77,7 @@ const patchUpdatePlaylist = createAsyncThunk(
   async ({ playlistID, playlistData }, { rejectWithValue }) => {
     try {
       let { data } = await axios.patch(
-        `/api/v1/playlist/${playlistID}`,
+        `${SERVER_API_BASE_URL}/api/v1/playlist/${playlistID}`,
         playlistData,
         {
           withCredentials: true,
@@ -90,12 +100,15 @@ const deletePlaylist = createAsyncThunk(
   "deletePlaylist",
   async (playlistID, { rejectWithValue }) => {
     try {
-      let { data } = await axios.delete(`/api/v1/playlist/${playlistID}`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.delete(
+        `${SERVER_API_BASE_URL}/api/v1/playlist/${playlistID}`,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -111,7 +124,7 @@ const addOrRemoveVideoFromPlaylist = createAsyncThunk(
   async ({ videoID, playlistID }, { rejectWithValue }) => {
     try {
       let { data } = await axios.patch(
-        `/api/v1/playlist/add_remove?videoID=${videoID}&playlistID=${playlistID}`,
+        `${SERVER_API_BASE_URL}/api/v1/playlist/add_remove?videoID=${videoID}&playlistID=${playlistID}`,
         {
           withCredentials: true,
           headers: {

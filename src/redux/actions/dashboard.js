@@ -1,13 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { handleRequestError } from "../../constants";
+import { handleRequestError, SERVER_API_BASE_URL } from "../../constants";
 
 const getStats = createAsyncThunk(
   "getStats",
   async (userID, { rejectWithValue }) => {
     try {
       let { data } = await axios.get(
-        `/api/v1/dashboard/stats?userID=${userID}`,
+        `${SERVER_API_BASE_URL}/api/v1/dashboard/stats?userID=${userID}`,
         {
           withCredentials: true,
           headers: {
@@ -28,7 +28,7 @@ const getVideos = createAsyncThunk(
   async (userID, { rejectWithValue }) => {
     try {
       let { data } = await axios.get(
-        `/api/v1/dashboard/videos?userID=${userID}`,
+        `${SERVER_API_BASE_URL}/api/v1/dashboard/videos?userID=${userID}`,
         {
           withCredentials: true,
           headers: {
@@ -49,7 +49,7 @@ const getPosts = createAsyncThunk(
   async (userID, { rejectWithValue }) => {
     try {
       let { data } = await axios.get(
-        `/api/v1/dashboard/posts?userID=${userID}`,
+        `${SERVER_API_BASE_URL}/api/v1/dashboard/posts?userID=${userID}`,
         {
           withCredentials: true,
           headers: {
@@ -70,7 +70,7 @@ const getWatchHistory = createAsyncThunk(
   async (userID, { rejectWithValue }) => {
     try {
       let { data } = await axios.get(
-        `/api/v1/dashboard/history?userID=${userID}`,
+        `${SERVER_API_BASE_URL}/api/v1/dashboard/history?userID=${userID}`,
         {
           withCredentials: true,
           headers: {
@@ -93,7 +93,7 @@ const removeFromHistory = createAsyncThunk(
   async (videoID, { rejectWithValue }) => {
     try {
       let { data } = await axios.delete(
-        `/api/v1/dashboard/history?videoID=${videoID}`,
+        `${SERVER_API_BASE_URL}/api/v1/dashboard/history?videoID=${videoID}`,
         {
           withCredentials: true,
           headers: {

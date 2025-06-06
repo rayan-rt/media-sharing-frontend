@@ -1,3 +1,5 @@
+const SERVER_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function handleRequestError(error, defaultMessage = "Something went wrong!") {
   return error.response?.data?.message || defaultMessage;
 }
@@ -11,4 +13,4 @@ function formatDate(isoDate) {
   });
 }
 
-export { handleRequestError, formatDate };
+export { handleRequestError, formatDate, SERVER_API_BASE_URL };

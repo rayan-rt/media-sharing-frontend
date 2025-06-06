@@ -1,13 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { handleRequestError } from "../../constants";
+import { handleRequestError, SERVER_API_BASE_URL } from "../../constants";
 
 const toggleVideoLikeDislike = createAsyncThunk(
   "toggleVideoLikeUnlike",
   async (videoID, { rejectWithValue }) => {
     try {
       let { data } = await axios.post(
-        `/api/v1/like/toggle/video?videoID=${videoID}`,
+        `${SERVER_API_BASE_URL}/api/v1/like/toggle/video?videoID=${videoID}`,
         {
           withCredentials: true,
           headers: {
@@ -30,7 +30,7 @@ const togglePostLikeDislike = createAsyncThunk(
   async (postID, { rejectWithValue }) => {
     try {
       let { data } = await axios.post(
-        `/api/v1/like/toggle/post?postID=${postID}`,
+        `${SERVER_API_BASE_URL}/api/v1/like/toggle/post?postID=${postID}`,
         {
           withCredentials: true,
           headers: {
@@ -53,7 +53,7 @@ const toggleCommentLikeDislike = createAsyncThunk(
   async (commentID, { rejectWithValue }) => {
     try {
       let { data } = await axios.post(
-        `/api/v1/like/toggle/comment?commentID=${commentID}`,
+        `${SERVER_API_BASE_URL}/api/v1/like/toggle/comment?commentID=${commentID}`,
         {
           withCredentials: true,
           headers: {
@@ -75,12 +75,15 @@ const getLikedVideos = createAsyncThunk(
   "getLikedVideos",
   async (_, { rejectWithValue }) => {
     try {
-      let { data } = await axios.get(`/api/v1/like/videos`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.get(
+        `${SERVER_API_BASE_URL}/api/v1/like/videos`,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -95,12 +98,15 @@ const getLikedPosts = createAsyncThunk(
   "getLikedPosts",
   async (_, { rejectWithValue }) => {
     try {
-      let { data } = await axios.get(`/api/v1/like/posts`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.get(
+        `${SERVER_API_BASE_URL}/api/v1/like/posts`,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -115,12 +121,15 @@ const getLikedComments = createAsyncThunk(
   "getLikedComments",
   async (_, { rejectWithValue }) => {
     try {
-      let { data } = await axios.get(`/api/v1/like/comments`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.get(
+        `${SERVER_API_BASE_URL}/api/v1/like/comments`,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {

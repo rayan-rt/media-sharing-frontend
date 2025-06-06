@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { handleRequestError } from "../../constants";
+import { handleRequestError, SERVER_API_BASE_URL } from "../../constants";
 
 // --- //
 
@@ -8,9 +8,13 @@ let postSignup = createAsyncThunk(
   "postSignup",
   async (formData, { rejectWithValue }) => {
     try {
-      let { data } = await axios.post("/api/v1/user/signup", formData, {
-        withCredentials: true,
-      });
+      let { data } = await axios.post(
+        `${SERVER_API_BASE_URL}/api/v1/user/signup`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
 
       return data;
     } catch (error) {
@@ -23,10 +27,14 @@ let postSignin = createAsyncThunk(
   "postSignin",
   async (userData, { rejectWithValue }) => {
     try {
-      let { data } = await axios.post("/api/v1/user/signin", userData, {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      });
+      let { data } = await axios.post(
+        `${SERVER_API_BASE_URL}/api/v1/user/signin`,
+        userData,
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -39,10 +47,13 @@ let getSignout = createAsyncThunk(
   "getSignout",
   async (_, { rejectWithValue }) => {
     try {
-      let { data } = await axios.get("/api/v1/user/signout", {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      });
+      let { data } = await axios.get(
+        `${SERVER_API_BASE_URL}/api/v1/user/signout`,
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -55,10 +66,13 @@ let fetchCurrentUser = createAsyncThunk(
   "fetchCurrentUser",
   async (_, { rejectWithValue }) => {
     try {
-      let { data } = await axios.get("/api/v1/user/currentuser/me", {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      });
+      let { data } = await axios.get(
+        `${SERVER_API_BASE_URL}/api/v1/user/currentuser/me`,
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -74,7 +88,7 @@ let fetchSingleUser = createAsyncThunk(
   async (userID, { rejectWithValue }) => {
     try {
       let { data } = await axios.get(
-        `/api/v1/user/requested-user?userID=${userID}`,
+        `${SERVER_API_BASE_URL}/api/v1/user/requested-user?userID=${userID}`,
         {
           withCredentials: true,
           headers: { "Content-Type": "application/json" },
@@ -95,7 +109,7 @@ let patchUpdateUserInfo = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       let { data } = await axios.patch(
-        "/api/v1/user/currentuser/me",
+        `${SERVER_API_BASE_URL}/api/v1/user/currentuser/me`,
         userData,
         {
           withCredentials: true,
@@ -117,7 +131,7 @@ let patchChangePassword = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       let { data } = await axios.patch(
-        "/api/v1/user/changepassword",
+        `${SERVER_API_BASE_URL}/api/v1/user/changepassword`,
         userData,
         {
           withCredentials: true,
@@ -139,7 +153,7 @@ let patchUpdateAvatar = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       let { data } = await axios.patch(
-        "/api/v1/user/currentuser/avatar",
+        `${SERVER_API_BASE_URL}/api/v1/user/currentuser/avatar`,
         userData,
         {
           withCredentials: true,
@@ -160,7 +174,7 @@ let patchUpdateCoverImage = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       let { data } = await axios.patch(
-        "/api/v1/user/currentuser/coverimage",
+        `${SERVER_API_BASE_URL}/api/v1/user/currentuser/coverimage`,
         userData,
         {
           withCredentials: true,

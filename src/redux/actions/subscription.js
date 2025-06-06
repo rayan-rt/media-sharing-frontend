@@ -1,13 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { handleRequestError } from "../../constants";
+import { handleRequestError, SERVER_API_BASE_URL } from "../../constants";
 
 const toggleSubscription = createAsyncThunk(
   "toggleSubscription",
   async (channelID, { rejectWithValue }) => {
     try {
       let { data } = await axios.post(
-        `/api/v1/subscription/channel?channelID=${channelID}`,
+        `${SERVER_API_BASE_URL}/api/v1/subscription/channel?channelID=${channelID}`,
         {
           withCredentials: true,
           headers: {
@@ -30,7 +30,7 @@ const checkSubscription = createAsyncThunk(
   async (channelID, { rejectWithValue }) => {
     try {
       let { data } = await axios.get(
-        `/api/v1/subscription/channel?channelID=${channelID}`,
+        `${SERVER_API_BASE_URL}/api/v1/subscription/channel?channelID=${channelID}`,
         {
           withCredentials: true,
           headers: {
@@ -53,7 +53,7 @@ const getSubscribers = createAsyncThunk(
   async (subscriberID, { rejectWithValue }) => {
     try {
       let { data } = await axios.get(
-        `/api/v1/subscription/user?subscriberID=${subscriberID}`,
+        `${SERVER_API_BASE_URL}/api/v1/subscription/user?subscriberID=${subscriberID}`,
         {
           withCredentials: true,
           headers: {
@@ -76,7 +76,7 @@ const getSubscribedChannels = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       let { data } = await axios.get(
-        `/api/v1/subscription/subscribed_channels`,
+        `${SERVER_API_BASE_URL}/api/v1/subscription/subscribed_channels`,
         {
           withCredentials: true,
           headers: {

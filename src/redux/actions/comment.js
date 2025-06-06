@@ -1,17 +1,21 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { handleRequestError } from "../../constants";
+import { handleRequestError, SERVER_API_BASE_URL } from "../../constants";
 
 let postCommentOnVideo = createAsyncThunk(
   "postCommentOnVideo",
   async (commentData, { rejectWithValue }) => {
     try {
-      let { data } = await axios.post(`/api/v1/comment/video`, commentData, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.post(
+        `${SERVER_API_BASE_URL}/api/v1/comment/video`,
+        commentData,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -26,12 +30,16 @@ let postCommentOnPost = createAsyncThunk(
   "postCommentOnPost",
   async (commentData, { rejectWithValue }) => {
     try {
-      let { data } = await axios.post(`/api/v1/comment/post`, commentData, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.post(
+        `${SERVER_API_BASE_URL}/api/v1/comment/post`,
+        commentData,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -46,12 +54,15 @@ let deleteComment = createAsyncThunk(
   "deleteComment",
   async (commentID, { rejectWithValue }) => {
     try {
-      let { data } = await axios.delete(`/api/v1/comment/${commentID}`, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let { data } = await axios.delete(
+        `${SERVER_API_BASE_URL}/api/v1/comment/${commentID}`,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return data;
     } catch (error) {
@@ -67,7 +78,7 @@ let toggleLikeUnlike = createAsyncThunk(
   async (commentID, { rejectWithValue }) => {
     try {
       let { data } = await axios.post(
-        `/api/v1/like/toggle/comment/${commentID}`,
+        `${SERVER_API_BASE_URL}/api/v1/like/toggle/comment/${commentID}`,
         {
           withCredentials: true,
           headers: {
@@ -88,7 +99,7 @@ const patchUpdateComment = createAsyncThunk(
   async ({ commentID, content }, { rejectWithValue }) => {
     try {
       let { data } = await axios.patch(
-        `/api/v1/comment/${commentID}`,
+        `${SERVER_API_BASE_URL}/api/v1/comment/${commentID}`,
         { content },
         {
           withCredentials: true,
