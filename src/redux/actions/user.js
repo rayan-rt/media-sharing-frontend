@@ -4,6 +4,8 @@ import { handleRequestError, SERVER_API_BASE_URL } from "../../constants";
 
 // --- //
 
+console.log(SERVER_API_BASE_URL);
+
 let postSignup = createAsyncThunk(
   "postSignup",
   async (formData, { rejectWithValue }) => {
